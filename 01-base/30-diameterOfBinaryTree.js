@@ -50,18 +50,18 @@
  * 空间复杂度为 O(h)，来自递归栈，平衡树为 O(log n)，最坏退化为 O(n)。
  */
 function diameterOfBinaryTree(root) {
-    if(!root) return 0;
-    let maxV=0;
-
-    const getDepth=node=>{
+    let max=0;
+    const getDepth=(node)=>{
         if(!node) return 0;
-        const leftDepth=getDepth(node.left);
-        const rightDepth=getDepth(node.right);
-        maxV=Math.max(maxV,leftDepth+rightDepth);
-
-        return Math.max(leftDepth,rightDepth)+1
+        const leftDepth= getDepth(node.left);
+        const rightDepth = getDepth(node.right);
+        max=Math.max(max,leftDepth+rightDepth);
+        return Math.max(leftDepth,rightDepth)+1;
     }
-
-    getDepth(root)
-    return maxV;
+    getDepth(root);
+    return max;
 }
+
+/**
+ * 二叉树最大路径和
+ */
