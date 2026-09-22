@@ -37,8 +37,6 @@
  *
  * 要求：
  * 尽量只遍历链表一次
- * 时间复杂度：O(n)
- * 空间复杂度：O(1)
  */
 
 function ListNode(value, next = null) {
@@ -46,22 +44,31 @@ function ListNode(value, next = null) {
   this.next = next;
 }
 
+/**
+ * dummy是为了解决边界case，比如要删除的是头节点
+ * 时间复杂度：O(n)
+ * 空间复杂度：O(1)
+ * @param value
+ * @param next
+ * @constructor
+ */
 function removeNthFromEnd(head, n) {
   const dummy={
-    value:0,
-    next:head
+    value: 0,
+    next: head
   }
-    let slow=dummy;
-    let fast=dummy;
-    for(let i=0;i<n;i++){
-      fast=fast.next;
-    }
-    while (fast.next){
-      slow=slow.next;
-      fast=fast.next;
-    }
+  let slow=dummy;
+  let fast=dummy;
+  for(let i=0;i<n;i++){
+    fast=fast.next;
+  }
+  while (fast.next){
+    slow=slow.next;
+    fast=fast.next;
+  }
 
-    slow.next=slow.next.next;
+  slow.next=slow.next.next;
 
-    return head;
+  return head;
 }
+
